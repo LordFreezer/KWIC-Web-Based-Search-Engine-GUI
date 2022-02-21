@@ -11,9 +11,14 @@ import javax.swing.JTextArea;
 public class Input implements ActionListener {
 	JFrame f = new JFrame();
 	Button b = new Button();
+	Button r = new Button();
 	JTextArea t1 = new JTextArea();
 	JTextArea t2 = new JTextArea();
 	static ArrayList<ArrayList<String>> box = new ArrayList<ArrayList<String>>();
+
+	private enum Actions {
+		RESET, ENGAGE
+	}
 
 	Input() {
 
@@ -21,14 +26,20 @@ public class Input implements ActionListener {
 
 		// Add Components to Frame
 		f.add(b);
+		f.add(r);
 		f.add(t1);
 		f.add(t2);
 
 		// Apply settings to components
 		t1.setBounds(20, 100, 400, 400);
 		t2.setBounds(520, 100, 400, 400);
+		r.setBounds(700, 600, 80, 30);
+		r.setLabel("Reset");
+		r.setActionCommand(Actions.RESET.name());
+		r.addActionListener(this);
 		b.setBounds(820, 600, 80, 30);
 		b.setLabel("Engage!");
+		b.setActionCommand(Actions.ENGAGE.name());
 		b.addActionListener(this);
 		f.setSize(1000, 1000);
 		f.setTitle("Webbased Search Engine");
@@ -52,45 +63,29 @@ public class Input implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String[] rowWords = t1.getText().split("\n");
-		for (int i = 0; i < t1.getLineCount(); i++) {
-			String[] colWords = rowWords[i].split(" ");
-			ArrayList<String> t = new ArrayList<String>();
-			for (int j = 0; j < colWords.length; j++) {
-				t.add(colWords[j]);
+		if (e.getActionCommand() == Actions.ENGAGE.name()) {
+			String[] rowWords = t1.getText().split("\n");
+			for (int i = 0; i < t1.getLineCount(); i++) {
+				String[] colWords = rowWords[i].split(" ");
+				ArrayList<String> t = new ArrayList<String>();
+				for (int j = 0; j < colWords.length; j++) {
+					t.add(colWords[j]);
+				}
+				box.add(t);
 			}
-			box.add(t);
+			Shifter circ = new Shifter();
+			Organizer alpha = new Organizer();
+			ArrayList<String> test = alpha.Sort(circ.circShift(box));
+			for (int i = 0; i < test.size(); i++) {
+				t2.append(test.get(i) + "\n");
+			}
+			box.clear();
+
+		} else if (e.getActionCommand() == Actions.RESET.name()) {
+			box.clear();
+			t1.setText("");
+			t2.setText("");
+
 		}
-
-		Shifter circ = new Shifter();
-		Organizer alpha = new Organizer();
-		/******************************************************************
-		 * Testing *
-		 ******************************************************************/
-
-//Pipe and Filter
-//Software Architecture in Practice
-
-		// Test of both Shifter and Organizer
-//		ArrayList<String> test = alpha.Sort(circ.circShift(box));
-
-		// Isolated Shifting Test
-		ArrayList<String> test = circ.circShift(box);
-
-		// Isolated Organizer Test
-//		ArrayList<String> test = new ArrayList<String>();
-//		test.add("Filter and Pipe");
-//		test.add("Filter Pipe and");
-//		test.add("Pipe and Filter");
-//		test.add("Architecture in Practice Software");
-//		test.add("in Practice Software Architecture");
-//		test.add("Practice Software Architecture in");
-//		test.add("Software Architecture in Practice");
-//		alpha.Sort(test);
-
-		for (int i = 0; i < test.size(); i++) {
-			System.out.println(test.get(i));
-		}
-
 	}
 }

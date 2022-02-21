@@ -19,9 +19,10 @@ public class Organizer {
 	 */
 	public static ArrayList<String> Sort(ArrayList<String> list) {
 		String temp;
-		int pos = 0;
+		int pos;
 		for (int g = 0; g < list.size(); g++) {
 			temp = list.get(g);
+			pos = g;
 			for (int h = g + 1; h < list.size(); h++) {
 				if (Compare(list.get(h), temp)) {
 					temp = list.get(h);
