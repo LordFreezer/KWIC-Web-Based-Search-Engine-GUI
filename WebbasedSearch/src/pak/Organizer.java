@@ -1,7 +1,6 @@
 package pak;
 
 /**
- *
  * @author Stephen Key
  */
 import java.util.ArrayList;
@@ -45,12 +44,12 @@ public class Organizer {
 	private static boolean Compare(String s1, String s2) {
 		int min = Math.min(s1.length(), s2.length());
 		char ref[] = { ' ', 'a', 'A', 'b', 'B', 'c', 'C', 'd', 'D', 'e', 'E', 'f', 'F', 'g', 'G', 'h', 'H', 'i', 'I',
-				'j', 'J', 'l', 'L', 'm', 'M', 'n', 'N', 'o', 'O', 'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't', 'T', 'u',
-				'U', 'v', 'V', 'w', 'W', 'x', 'X', 'y', 'Y', 'z', 'Z' };
+				'j', 'J', 'k', 'K', 'l', 'L', 'm', 'M', 'n', 'N', 'o', 'O', 'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't',
+				'T', 'u', 'U', 'v', 'V', 'w', 'W', 'x', 'X', 'y', 'Y', 'z', 'Z' };
 		int i1 = 0, i2 = 0;
 		for (int g = 0; g < min; g++) {
 			// Find the index of the character from the first string
-			for (int h = 0; h < 52; h++) {
+			for (int h = 0; h < 53; h++) {
 				if (ref[h] == s1.charAt(g)) {
 					i1 = h;
 					break;
