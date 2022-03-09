@@ -1,9 +1,21 @@
+/*
+ * Software Architecture & Design
+ * SE4433/CMSC5433
+ * Assignment 3
+ * 2/22/2022
+ * Stephen Key and Chad Marshall
+ */
+
 package pak;
 
+/*
+ * @author Chad Marshall
+ */
 import java.awt.Button;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
@@ -18,6 +30,7 @@ public class Input implements ActionListener {
 
 	// List of lists that will hold each line, word by word.
 	static ArrayList<ArrayList<String>> box = new ArrayList<ArrayList<String>>();
+	static ArrayList<String> presentation = new ArrayList<String>();
 
 	// Enums for ActionCommands
 	private enum Actions {
@@ -88,10 +101,15 @@ public class Input implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		Organizer alpha = new Organizer();
+
 		// Takes user input from JTextArea and parses the data into line, then words.
 		if (e.getActionCommand() == Actions.ENGAGE.name()) {
 			// Splits the JTextArea data by the newline character, making an array of lines.
 			String[] rowWords = t1.getText().split("\n");
+
+			presentation = new ArrayList<>(Arrays.asList(rowWords));
+
 			for (int i = 0; i < t1.getLineCount(); i++) {
 				// Splits a single line by the whitespace, making an array of words.
 				String[] colWords = rowWords[i].split(" ");
@@ -103,17 +121,24 @@ public class Input implements ActionListener {
 				box.add(t); // Add the list to the list of lists.
 			}
 			Shifter circ = new Shifter();
-			Organizer alpha = new Organizer();
+
 			// Perform the shifting and alphabetizing.
-			ArrayList<String> test = alpha.Sort(circ.circShift(box));
+			// Original Assignment
+			// ArrayList<String> test = alpha.Sort(circ.circShift(box));
+
+			// Video Demonstration
+			ArrayList<String> test = circ.parse(alpha.Sort(presentation));
+
 			for (int i = 0; i < test.size(); i++) {
 				// Output the result to the user.
 				t2.append(test.get(i) + "\n");
 			}
 			box.clear();// Purge the list of lists.
+			presentation.clear();
 
 		} else if (e.getActionCommand() == Actions.RESET.name()) {
 			box.clear();
+			presentation.clear();
 			// Purge JTextAreas
 			t1.setText("");
 			t2.setText("");

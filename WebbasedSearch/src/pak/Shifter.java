@@ -1,5 +1,8 @@
 package pak;
 
+/*
+ * @author Chad Marshall
+ */
 import java.util.ArrayList;
 
 public class Shifter {
@@ -10,7 +13,7 @@ public class Shifter {
 	 * 
 	 * @param list of lists in exact order the user provided.
 	 * 
-	 * @return list of permutations of each line.
+	 * @return list of shifts of each line.
 	 */
 	public static ArrayList<String> circShift(ArrayList<ArrayList<String>> list) {
 		ArrayList<String> shiftedList = new ArrayList<String>();
@@ -33,10 +36,32 @@ public class Shifter {
 					temp += t_list.get(k) + " ";
 				}
 				shiftedList.add(temp); // Add to shifted list.
+				System.out.println(temp);
 			}
 			// Repeat shifting for each word in line.
 		}
 		return shiftedList;
+	}
+	/*
+	 * EFFECTS: Takes an ArrayList of Strings and converts it to ArrayList of ArrayList
+	 * 
+	 * @param list in exact order the user provided.
+	 * 
+	 * @return list sorted shifts.
+	 */
+	public static ArrayList<String> parse(ArrayList<String> list) {
+		ArrayList<ArrayList<String>> shiftedList = new ArrayList<ArrayList<String>>();
+		// Splits a single line by the whitespace, making an array of words.
+		for (int i = 0; i < list.size(); i++) {
+			String[] colWords = list.get(i).split(" ");
+			ArrayList<String> t = new ArrayList<String>();
+			// Convert array to list.
+			for (int j = 0; j < colWords.length; j++) {
+				t.add(colWords[j]);
+			}
+			shiftedList.add(t);// Add the list to the list of lists.
+		}
+		return circShift(shiftedList);
 	}
 
 }
