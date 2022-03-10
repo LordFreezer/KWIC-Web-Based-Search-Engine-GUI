@@ -6,7 +6,7 @@ Web-based Search KWIC System
 
 **Requirement Specification (Sequence Diagram):**
 
-**![](media/7e0a5255324f805490256cbd0df8358d.png)**
+**![Screenshot](https://github.com/LordFreezer/Web-Based-Search-Engine-KWIC/blob/Assets/sequ.png)**
 
 The system’s architectural style makes it easily scalable and modifiable. The
 user interface presents the system’s functionality as a GUI making it
@@ -38,12 +38,11 @@ the user.
 
 **Design Specification (Class Diagram):**
 
-**![](media/45f29607cf0c1dcce27c3b3db410367e.png)**
+**![Screenshot](https://github.com/LordFreezer/Web-Based-Search-Engine-KWIC/blob/Assets/dia2.png)**
 
 **User Manual**
 
-**![Graphical user interface, application Description automatically
-generated](media/288ed4a42423994b77b482ff3dc20bd6.png)**
+**![Screenshot](https://github.com/LordFreezer/Web-Based-Search-Engine-KWIC/blob/Assets/dia3.png)**
 
 The system was coded through NetBeans and is designed to run as a NetBeans
 project. However, the projects internal classes (Input, Organizer, and Shifter)
