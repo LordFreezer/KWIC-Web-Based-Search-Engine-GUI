@@ -14,7 +14,7 @@ user-friendly.
 
 **Architecture Specification (Component Diagram):**
 
-**![](media/779916882b9d3e750c2ae76e406aa54a.png)**
+**![Screenshot](https://github.com/LordFreezer/Web-Based-Search-Engine-KWIC/blob/Assets/dia1.png)**
 
 This system uses the Pipe and Filter Architectural style. The user interface
 takes in a String input and passes an ArrayList of Strings to the circular
