@@ -1,51 +1,82 @@
-
-import java.util.*;
+import java.util.ArrayList;
 
 /**
- * 
+ *
+ * @author Stephen Key
  */
 public class Line {
-
+    private ArrayList<Word> words;
     /**
-     * Default constructor
+     * OVERVIEW: Constructor, initializes the words attribute
      */
-    public Line() {
+    public Line()
+    {
+        words = new ArrayList();
     }
-
+    
     /**
+     * OVERVIEW: Sets the j'th character in the i'th word to the specified char value
      * 
+     * @param i The index of the word to search for
+     * @param j The index or character to search for within that word
+     * @param c The value to set that character to
      */
-    public ArrayList<Word> words;
-
-
-
-    /**
-     * @param int 
-     * @param int 
-     * @return
-     */
-    public char getChar(void int, void int) {
-        // TODO implement here
-        return "0";
+    public void setChar(int i, int j, char c)
+    {
+        if (i < words.size() && i >= 0)
+            words.get(i).setChar(j, c);
     }
-
+    
     /**
-     * @param int 
-     * @param int 
-     * @param char 
-     * @return
+     * OVERVIEW: Adds the specified character to the end of the last word in the line
+     * 
+     * @param c The character to add
      */
-    public void setChar(void int, void int, void char) {
-        // TODO implement here
-        return null;
+    public void addChar(char c)
+    {
+        words.get(words.size()-1).addChar(c);
     }
-
+    
     /**
-     * @return
+     * OVERVIEW: Adds a new empty word to the end of the line
      */
-    public int length() {
-        // TODO implement here
-        return 0;
+    public void addWord()
+    {
+        words.add(new Word());
     }
-
+    
+    /**
+     * OVERVIEW: Returns the j'th character of the i'th word in the list
+     * 
+     * @param i The index of the word to search for
+     * @param j The index of the character to search for within that word
+     * @return The char value at that index
+     */
+    public char getChar(int i, int j)
+    {
+        if(i < words.size() && i >= 0)
+            return words.get(i).getChar(j);
+        else return 0;
+    }
+    
+    /**
+     * OVERVIEW: returns the number of words in this line
+     * @return an integer value of the size of the words list
+     */
+    public int wordCount()
+    {
+        return words.size();
+    }
+    
+    /**
+     * OVERVIEW: returns the length of the word at the specified index
+     * @param i The index of the word to search for
+     * @return The length of that word
+     */
+    public int charCountAt(int i)
+    {
+        if(i < words.size() && i >= 0)
+            return words.get(i).charCount();
+        else return 0;
+    }
 }
