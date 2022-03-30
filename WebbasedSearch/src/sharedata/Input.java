@@ -8,32 +8,29 @@
  */
 package sharedata;
 
-import java.awt.Button;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 /**
  * 
  */
-public class Input implements ActionListener {
+public class Input {
 
 	// Component Declarations.
 	JFrame f = new JFrame();
-	Button b = new Button();
-	Button r = new Button();
+	JButton b = new JButton();
+	JButton r = new JButton();
 	JTextArea t1 = new JTextArea();
 	JTextArea t2 = new JTextArea();
 	LineStorage local;
-
+	int x;
 	// List of lists that will hold each line, word by word.
 	// static ArrayList<ArrayList<String>> box = new ArrayList<ArrayList<String>>();
 	// static ArrayList<String> presentation = new ArrayList<String>();
 
 	// Enums for ActionCommands
-	private enum Actions {
+	public enum Actions {
 		RESET, ENGAGE
 	}
 
@@ -41,6 +38,9 @@ public class Input implements ActionListener {
 	 * Sets properties of display that user interacts with.
 	 */
 	public Input(LineStorage l) {
+
+		ButtonEventHandler btnhandler = new ButtonEventHandler(this);
+
 		// Add Components to Frame.
 		f.add(b);
 		f.add(r);
@@ -53,11 +53,11 @@ public class Input implements ActionListener {
 		r.setBounds(700, 600, 80, 30);
 		r.setLabel("Reset");
 		r.setActionCommand(Actions.RESET.name());
-		r.addActionListener(this);
+		r.addActionListener(btnhandler);
 		b.setBounds(820, 600, 80, 30);
 		b.setLabel("Engage!");
 		b.setActionCommand(Actions.ENGAGE.name());
-		b.addActionListener(this);
+		b.addActionListener(btnhandler);
 		f.setSize(1000, 1000);
 		f.setTitle("Webbased Search Engine");
 		f.setLayout(null);
@@ -92,24 +92,20 @@ public class Input implements ActionListener {
 	 * 
 	 * @return None.
 	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-
-		if (e.getActionCommand() == Actions.ENGAGE.name()) {
-			Read();
-			Output display = new Output(local);
-			display.Print(t2);
-
-		} else if (e.getActionCommand() == Actions.RESET.name()) {
-			// box.clear();
-			// presentation.clear();
-
-			// Purge JTextAreas
-			t1.setText("");
-			t2.setText("");
-
-		}
-
-	}
+	/*
+	 * @Override public void actionPerformed(ActionEvent e) {
+	 * 
+	 * if (e.getActionCommand() == Actions.ENGAGE.name()) { Read(); // Output
+	 * display = new Output(local); // display.Print(t2);
+	 * 
+	 * } else if (e.getActionCommand() == Actions.RESET.name()) { // box.clear(); //
+	 * presentation.clear();
+	 * 
+	 * // Purge JTextAreas t1.setText(""); t2.setText("");
+	 * 
+	 * }
+	 * 
+	 * }
+	 */
 
 }

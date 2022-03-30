@@ -24,14 +24,14 @@ public class Output {
 				c = local.getChar(f, g, 0);
 				for (int h = 0; h < local.charCountAt(f, g); h++) {
 					c = local.getChar(f, g, h);
-					// System.out.print(c);
+					System.out.print(c);
 					word += c;
 				}
-				// System.out.print(' ');
+				System.out.print(' ');
 				t2.append(word);
 				t2.append(" ");
 			}
-			// System.out.print('\n');
+			System.out.print('\n');
 			t2.append("\n");
 		}
 	}
