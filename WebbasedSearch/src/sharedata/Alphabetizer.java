@@ -134,4 +134,38 @@ public class Alphabetizer {
             return reference.getChar(indices[i], j, k);
         else return 0;
     }
+    
+    /**
+     * OVERVIEW: returns the number of lines in this set
+     * @return an integer value of the size of the lines list
+     */
+    public int lineCount()
+    {
+        return reference.lineCount();
+    }
+    
+    /**
+     * OVERVIEW: returns the word count of the line at the specified index
+     * @param i The index of the line to search for
+     * @return The word count of that line
+     */
+    public int wordCountAt(int i)
+    {
+        if(i < reference.lineCount()&& i >= 0)
+            return reference.wordCountAt(indices[i]);
+        else return 0;
+    }
+    
+    /**
+     * OVERVIEW: Returns the length of the j'th word in the i'th line
+     * @param i the index of the line to search for
+     * @param j the index of the word to search for within that line
+     * @return The length of that word
+     */
+    public int charCountAt(int i, int j)
+    {
+        if(i < reference.lineCount() && i >= 0)
+            return reference.charCountAt(indices[i], j);
+        else return 0;
+    }
 }
