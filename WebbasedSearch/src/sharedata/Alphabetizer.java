@@ -8,7 +8,7 @@ package sharedata;
 public class Alphabetizer implements ILineSet{
 
     private static int[] indices;
-    private static LineStorage reference;
+    private static ILineSet reference;
     
     /**
      * OVERVIEW: Constructor, creates a list of sorted indices based on the alphabetical
@@ -144,11 +144,11 @@ public class Alphabetizer implements ILineSet{
      * @param i the index of the line to search for
      * @param j the index of the word to search for within that line
      * @return The length of that word
-     */
+     *If ILineSet Includes this method, put it back in.
     public int charCountAt(int i, int j)
     {
         if(i < reference.lineCount() && i >= 0)
             return reference.charCountAt(indices[i], j);
         else return 0;
-    }
+    }*/
 }
