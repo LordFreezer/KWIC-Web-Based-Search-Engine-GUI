@@ -1,11 +1,11 @@
+package sharedata;
 
 /**
  *
  * @author Stephen Key
  */
-import java.util.ArrayList;
 
-public class Alphabetizer {
+public class Alphabetizer implements ILineSet{
 
     private static int[] indices;
     private static LineStorage reference;
@@ -86,7 +86,7 @@ public class Alphabetizer {
                     i1 = h;
                     break;
                 }
-                // throw new Exception("Character is not a letter or space.");
+                // throw new Exception("Character is not a letter");
             }
             // Find the index of the character from the second line
             for (int h = 0; h < 52; h++) {
@@ -128,13 +128,13 @@ public class Alphabetizer {
      * @param k The index of the character to search for within that word
      * @return The char value at that index
      */
+    @Override
     public char getChar(int i, int j, int k)
     {
         if(i < indices.length && i >= 0)
             return reference.getChar(indices[i], j, k);
         else return 0;
     }
-    
     /**
      * OVERVIEW: returns the number of lines in this set
      * @return an integer value of the size of the lines list
@@ -149,6 +149,7 @@ public class Alphabetizer {
      * @param i The index of the line to search for
      * @return The word count of that line
      */
+    @Override
     public int wordCountAt(int i)
     {
         if(i < reference.lineCount()&& i >= 0)
