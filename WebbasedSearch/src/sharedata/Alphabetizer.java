@@ -14,36 +14,18 @@ public class Alphabetizer implements ILineSet{
      * OVERVIEW: Constructor, creates a list of sorted indices based on the alphabetical
      * order of the lines in those indices. The order is: a<A<b<B< … <y<Y<z<Z
      * 
-     * @param ls The LineStorage Object it will read characters from
-     * (Should be CircularShifter! Change that later!)
+     * @param ls The ILineSet Object it will read characters from
      */
-    public Alphabetizer(LineStorage ls) 
+    public Alphabetizer(ILineSet ls) 
     {
         reference = ls;
-        indices = new int[reference.lineCount()];
-        for(int g = 0; g < indices.length; g++)
-        {indices[g] = g;}
-        int temp;
-        int pos;
-        for (int g = 0; g < indices.length; g++) {
-            temp = indices[g];
-            pos = g;
-            for (int h = g + 1; h < indices.length; h++) {
-                if (Compare(indices[h], temp)) {
-                    temp = indices[h];
-                    pos = h;
-                }
-            }
-            indices[pos] = indices[g];
-            indices[g] = temp;
-        }
+        Sort();
     }
 
     /**
      * OVWRVIEW: Sorts its indices based on the alphabetical order of the lines 
      * in those indices. The order is: a<A<b<B< … <y<Y<z<Z
-     *
-     *Keeping this method just in case
+     */
     public void Sort() {
         //Fill the array of line indices
         indices = new int[reference.lineCount()];
@@ -63,7 +45,7 @@ public class Alphabetizer implements ILineSet{
             indices[pos] = indices[g];
             indices[g] = temp;
         }
-    }*/
+    }
 
     /**
      * OVERVIEW: Determines if one line is alphabetically less than the other
