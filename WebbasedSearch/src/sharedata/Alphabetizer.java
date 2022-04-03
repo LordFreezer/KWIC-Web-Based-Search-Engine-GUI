@@ -121,6 +121,7 @@ public class Alphabetizer implements ILineSet{
      * OVERVIEW: returns the number of lines in this set
      * @return an integer value of the size of the lines list
      */
+    @Override
     public int lineCount()
     {
         return reference.lineCount();
@@ -144,11 +145,12 @@ public class Alphabetizer implements ILineSet{
      * @param i the index of the line to search for
      * @param j the index of the word to search for within that line
      * @return The length of that word
-     *If ILineSet Includes this method, put it back in.
+     */
+    @Override
     public int charCountAt(int i, int j)
     {
         if(i < reference.lineCount() && i >= 0)
             return reference.charCountAt(indices[i], j);
         else return 0;
-    }*/
+    }
 }
