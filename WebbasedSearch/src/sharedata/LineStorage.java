@@ -1,4 +1,3 @@
-package sharedata;
 
 import java.util.ArrayList;
 
@@ -62,6 +61,7 @@ public class LineStorage implements ILineSet{
      * @param k The index of the character to search for within that word
      * @return The char value at that index
      */
+    @Override
     public char getChar(int i, int j, int k)
     {
         if(i < lines.size() && i >= 0)
@@ -73,6 +73,7 @@ public class LineStorage implements ILineSet{
      * OVERVIEW: returns the number of lines in this set
      * @return an integer value of the size of the lines list
      */
+    @Override
     public int lineCount()
     {
         return lines.size();
@@ -83,6 +84,7 @@ public class LineStorage implements ILineSet{
      * @param i The index of the line to search for
      * @return The word count of that line
      */
+    @Override
     public int wordCountAt(int i)
     {
         if(i < lines.size() && i >= 0)
@@ -96,6 +98,7 @@ public class LineStorage implements ILineSet{
      * @param j the index of the word to search for within that line
      * @return The length of that word
      */
+    @Override
     public int charCountAt(int i, int j)
     {
         if(i < lines.size() && i >= 0)

@@ -101,10 +101,12 @@ public class Input implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		final long startTime = System.currentTimeMillis();
 		Organizer alpha = new Organizer();
 
 		// Takes user input from JTextArea and parses the data into line, then words.
 		if (e.getActionCommand() == Actions.ENGAGE.name()) {
+
 			// Splits the JTextArea data by the newline character, making an array of lines.
 			String[] rowWords = t1.getText().split("\n");
 
@@ -124,15 +126,17 @@ public class Input implements ActionListener {
 
 			// Perform the shifting and alphabetizing.
 			// Original Assignment
-			// ArrayList<String> test = alpha.Sort(circ.circShift(box));
+
+			ArrayList<String> test = alpha.Sort(circ.circShift(box));
 
 			// Video Demonstration
-			ArrayList<String> test = circ.parse(alpha.Sort(presentation));
+			// ArrayList<String> test = circ.parse(alpha.Sort(presentation));
 
 			for (int i = 0; i < test.size(); i++) {
 				// Output the result to the user.
 				t2.append(test.get(i) + "\n");
 			}
+
 			box.clear();// Purge the list of lists.
 			presentation.clear();
 
@@ -144,5 +148,7 @@ public class Input implements ActionListener {
 			t2.setText("");
 
 		}
+		final long endTime = System.currentTimeMillis();
+		System.out.println("Total execution time: " + (endTime - startTime) + "ms");
 	}
 }

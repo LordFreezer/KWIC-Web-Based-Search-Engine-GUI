@@ -36,14 +36,16 @@ public class Shifter {
 					temp += t_list.get(k) + " ";
 				}
 				shiftedList.add(temp); // Add to shifted list.
-				System.out.println(temp);
+				// System.out.println(temp);
 			}
 			// Repeat shifting for each word in line.
 		}
 		return shiftedList;
 	}
+
 	/*
-	 * EFFECTS: Takes an ArrayList of Strings and converts it to ArrayList of ArrayList
+	 * EFFECTS: Takes an ArrayList of Strings and converts it to ArrayList of
+	 * ArrayList
 	 * 
 	 * @param list in exact order the user provided.
 	 * 

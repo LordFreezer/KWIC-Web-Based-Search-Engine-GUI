@@ -76,11 +76,11 @@ public class Input {
 				local.addWord();
 				for (int h = 0; h < colWords[j].length(); h++) {
 					local.addChar(colWords[j].charAt(h));
-					System.out.print(colWords[j].charAt(h));
+					// System.out.print(colWords[j].charAt(h));
 				}
-				System.out.print(' ');
+				// System.out.print(' ');
 			}
-			System.out.print('\n');
+			// System.out.print('\n');
 		}
 	}
 
