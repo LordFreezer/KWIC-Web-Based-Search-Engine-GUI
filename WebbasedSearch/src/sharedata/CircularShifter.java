@@ -1,58 +1,89 @@
-package sharedata;
 
 import java.util.ArrayList;
 
 /**
- * 
+ *
+ * @author Stephen Key
  */
-public class CircularShifter {
-	int[] lineLengths;
-	private LineStorage reference;
+public class CircularShifter implements ILineSet {
 
-	/**
-	 * Constructor: Fills in the Reference attribute and stores is line lengths in lineLengths
-	 */
-	public CircularShifter(LineStorage ls) {
-		//Fill the reference attribute
-		reference = ls;
-		
-		//Store the length of each line
-		lineLengths = new int[reference.linecount()];
-		for (int g = 0; g < lineLengths.length; g++)
-		{
-			lineLengths[g] = wordCountAt(g);
-		}
-	}
-	
-	/**
-	 * We may not even need this function :P
-	 */
-	public void makeShift() {
-		// TODO implement here
+    private ILineSet reference;
+    private ArrayList<Integer> lines;
+    private ArrayList<Integer> offsets;
 
-	}
+    public CircularShifter(ILineSet ls) {
+        reference = ls;
+        lines = new ArrayList();
+        offsets = new ArrayList();
+        makeShift();
+    }
 
-	/**
-	 * Returns the k'th character in the j'th word in the i'th line in the Circular shift array
-	 */
-	public char getChar(int i, int j, int k) {
-		//Find which line from LineStorage to pick from
-		int g;
-		for(g = 0; g < reference.linecount(); g++)
-		{
-			i -= lineLengths[g];
-			if (i < 0)
-			{
-				i += lineLengths[g];
-				break;
-			}
-		}
-		
-		int h = /*Find out which word this line should start on*/;
-		if(/*The word we need to pick is after this line would wrap around*/)
-			/*"Wrap around" h*/;
-		
-		return reference.getChar(g, h, k);
-	}
+    public void makeShift() {
+        for (int g = 0; g < reference.lineCount(); g++) {
+            for (int h = 0; h < reference.wordCountAt(g); h++) {
+                if (!isFiller(g, h)) {
+                    lines.add(g);
+                    offsets.add(h);
+                }
+            }
+        }
+    }
+
+    private boolean isFiller(int i, int j) {
+        String[] ref = {"a", "an", "the", "and", "or", "of", "to", "be", "is", "in", "out", "by", "as", "at", "off"};
+        String word = "";
+        for(int g=0; g < reference.charCountAt(i, j); g++)
+            word += reference.getChar(i, j, g);
+        for (String s : ref)
+        {
+            if (word.equals(s))
+                    return true;
+        }
+        return false;
+    }
+
+    @Override
+    public char getChar(int i, int j, int k) {
+        if(i >= lines.size() || i < 0)
+            return 0;
+        if(j >= reference.wordCountAt(lines.get(i)))
+            return 0;
+        else {
+            int a = j + offsets.get(i);
+            if (a >= reference.wordCountAt(lines.get(i))) {
+                a -= reference.wordCountAt(lines.get(i));
+            }
+            return reference.getChar(lines.get(i), a, k);
+        }
+    }
+
+    @Override
+    public int lineCount() {
+        return lines.size();
+    }
+
+    @Override
+    public int wordCountAt(int i) {
+        if (i < lines.size() && i >= 0) {
+            return reference.wordCountAt(lines.get(i));
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public int charCountAt(int i, int j) {
+        if(i >= lines.size() || i < 0)
+            return 0;
+        if(j >= reference.wordCountAt(lines.get(i)))
+            return 0;
+        else {
+            int a = j + offsets.get(i);
+            if (a >= reference.wordCountAt(lines.get(i))) {
+                a -= reference.wordCountAt(lines.get(i));
+            }
+            return reference.charCountAt(lines.get(i), a);
+        }
+    }
 
 }
