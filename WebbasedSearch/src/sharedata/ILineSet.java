@@ -30,4 +30,12 @@ public interface ILineSet {
      * @return The word count of that line
      */
     public int wordCountAt(int i);
+    
+    /**
+     * OVERVIEW: Returns the length of the j'th word in the i'th line
+     * @param i the index of the line to search for
+     * @param j the index of the word to search for within that line
+     * @return The length of that word
+     */
+    public int charCountAt(int i, int j);
 }
