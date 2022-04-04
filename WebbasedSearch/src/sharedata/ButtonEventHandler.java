@@ -18,11 +18,7 @@ public class ButtonEventHandler implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		final long startTime = System.currentTimeMillis();
 		if (event.getSource() instanceof JButton) {
-			// System.out.println("JButton pressed");
-			// JButton eventSrc = (JButton) event.getSource();
 			if (event.getActionCommand() == Actions.ENGAGE.name()) {
-				// System.out.println("Engage pressed");
-
 				window.Read();
 
 				MastControl controller = new MastControl(window);
@@ -32,9 +28,7 @@ public class ButtonEventHandler implements ActionListener {
 				// Purge JTextAreas
 				window.t1.setText("");
 				window.t2.setText("");
-
 			}
-
 		}
 		final long endTime = System.currentTimeMillis();
 		System.out.println("Total execution time: " + (endTime - startTime) + "ms");

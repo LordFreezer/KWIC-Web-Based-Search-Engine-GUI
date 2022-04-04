@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class CircularShifter implements ILineSet {
 
-	private ILineSet reference;
+	public ILineSet reference;
 	private ArrayList<Integer> lines;
 	private ArrayList<Integer> offsets;
 
@@ -20,8 +20,8 @@ public class CircularShifter implements ILineSet {
 	 */
 	public CircularShifter(ILineSet ls) {
 		reference = ls;
-		lines = new ArrayList();
-		offsets = new ArrayList();
+		lines = new ArrayList<Integer>();
+		offsets = new ArrayList<Integer>();
 		makeShift();
 	}
 
@@ -30,7 +30,7 @@ public class CircularShifter implements ILineSet {
 	 * reference set repeatedly moving the first word in one line to the end of that
 	 * line, excludes lines that start with noise words
 	 */
-	public void makeShift() {
+	private void makeShift() {
 		for (int g = 0; g < reference.lineCount(); g++) {
 			for (int h = 0; h < reference.wordCountAt(g); h++) {
 				if (!isFiller(g, h)) {

@@ -11,9 +11,10 @@ public class MastControl {
 	 * Default constructor
 	 */
 	public MastControl(Input window) {
-		Output display = new Output(window.local);
 		CircularShifter cs = new CircularShifter(window.local);
+
 		Alphabetizer az = new Alphabetizer(cs);
+
 		Display(az, window.t2);
 
 	}

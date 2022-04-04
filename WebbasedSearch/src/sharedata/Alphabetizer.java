@@ -8,7 +8,7 @@ package sharedata;
 public class Alphabetizer implements ILineSet {
 
 	private static int[] indices;
-	private static ILineSet reference;
+	public ILineSet reference;
 
 	/**
 	 * OVERVIEW: Constructor, creates a list of sorted indices based on the
@@ -20,13 +20,14 @@ public class Alphabetizer implements ILineSet {
 	public Alphabetizer(ILineSet ls) {
 		reference = ls;
 		Sort();
+
 	}
 
 	/**
 	 * OVWRVIEW: Sorts its indices based on the alphabetical order of the lines in
 	 * those indices. The order is: a<A<b<B< … <y<Y<z<Z
 	 */
-	public void Sort() {
+	private void Sort() {
 		// Fill the array of line indices
 		indices = new int[reference.lineCount()];
 		for (int g = 0; g < indices.length; g++) {
@@ -55,7 +56,7 @@ public class Alphabetizer implements ILineSet {
 	 * @param line2 The other line to compare
 	 * @return true if s1 is less than or equal to s2, false if it is not
 	 */
-	private static boolean Compare(int line1, int line2) {
+	private boolean Compare(int line1, int line2) {
 		int min = Math.min(reference.wordCountAt(line1), reference.wordCountAt(line2));
 		char ref[] = { 'a', 'A', 'b', 'B', 'c', 'C', 'd', 'D', 'e', 'E', 'f', 'F', 'g', 'G', 'h', 'H', 'i', 'I', 'j',
 				'J', 'k', 'K', 'l', 'L', 'm', 'M', 'n', 'N', 'o', 'O', 'p', 'P', 'q', 'Q', 'r', 'R', 's', 'S', 't', 'T',
