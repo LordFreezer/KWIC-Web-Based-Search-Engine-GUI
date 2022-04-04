@@ -8,7 +8,7 @@ package sharedata;
 public class Alphabetizer implements ILineSet {
 
 	private static int[] indices;
-	public ILineSet reference;
+	private ILineSet reference;
 
 	/**
 	 * OVERVIEW: Constructor, creates a list of sorted indices based on the

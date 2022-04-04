@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 public class CircularShifter implements ILineSet {
 
-	public ILineSet reference;
+	private ILineSet reference;
 	private ArrayList<Integer> lines;
 	private ArrayList<Integer> offsets;
 
