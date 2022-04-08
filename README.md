@@ -89,6 +89,7 @@ Alphabetizer
 Using the data provided, we noticed that the older system performs faster than the new system. It is theorized that because data is being copied by daisy chaining Objects in MastControl, the execution time is greater in the new system than the old.
 
 **Execution time in old System**
+
 **![Screenshot](https://github.com/LordFreezer/Web-Based-Search-Engine-KWIC/blob/Assets/sha12.png)**
 
 **Program View**
